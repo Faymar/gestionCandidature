@@ -1,0 +1,277 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Brief8",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        { "name": "AuthUser" },
+        { "name": "Formation" },
+        { "name": "Demandes" },
+        { "name": "New folder" }
+    ],
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": ["AuthUser"],
+                "summary": "login",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "admin@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": { "application/json": {} }
+                    }
+                }
+            }
+        },
+        "/api/me": {
+            "post": {
+                "tags": ["AuthUser"],
+                "summary": "Auth user",
+                "requestBody": {
+                    "content": {}
+                },
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": { "application/json": {} }
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": ["AuthUser"],
+                "summary": "register",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nom": {
+                                        "type": "string",
+                                        "example": "faye"
+                                    },
+                                    "prenom": {
+                                        "type": "string",
+                                        "example": "mouhamadou"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "faye@gmail.com"
+                                    },
+                                    "datedeNaissance": {
+                                        "type": "string",
+                                        "example": "199-01-01"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "telephone": {
+                                        "type": "integer",
+                                        "example": "771344565"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": { "application/json": {} }
+                    }
+                }
+            }
+        },
+        "/api/ajouterFormation": {
+            "post": {
+                "tags": ["Formation"],
+                "summary": "ajouter formation",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "fichier": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "nomFormation": {
+                                        "type": "string",
+                                        "example": "dev full"
+                                    },
+                                    "dateDebut": {
+                                        "type": "string",
+                                        "example": "2023-06-01"
+                                    },
+                                    "dateFin": {
+                                        "type": "string",
+                                        "example": "2024-06-01"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": { "application/json": {} }
+                    }
+                }
+            }
+        },
+        "/api/modifierFormation/3": {
+            "patch": {
+                "tags": ["Formation"],
+                "summary": "modifier Formation",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "fichier": { "type": "string" },
+                                    "nomFormation": {
+                                        "type": "string",
+                                        "example": "dev web mobil"
+                                    },
+                                    "dateDebut": {
+                                        "type": "string",
+                                        "example": "2023-06-01"
+                                    },
+                                    "dateFin": {
+                                        "type": "string",
+                                        "example": "2024-06-01"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": { "application/json": {} }
+                    }
+                }
+            }
+        },
+        "/api/listFormations": {
+            "get": {
+                "tags": ["Formation"],
+                "summary": "listFormations",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": { "application/json": {} }
+                    }
+                }
+            }
+        },
+        "/api/voirFormation/2": {
+            "get": {
+                "tags": ["Formation"],
+                "summary": "Voir formation",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": { "application/json": {} }
+                    }
+                }
+            }
+        },
+        "/api/faireDemande/2": {
+            "post": {
+                "tags": ["Demandes"],
+                "summary": "Faire demande",
+                "requestBody": {},
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": { "application/json": {} }
+                    }
+                }
+            }
+        },
+        "/api/candidat/listeDemande": {
+            "get": {
+                "tags": ["Demandes"],
+                "summary": "candidat listeDemande",
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": { "application/json": {} }
+                    }
+                }
+            }
+        },
+        "/api/listeCandudature/1": {
+            "get": {
+                "tags": ["Demandes"],
+                "summary": "liste Candudature",
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": { "application/json": {} }
+                    }
+                }
+            }
+        },
+        "/api/accepterDemande/1/1": {
+            "patch": {
+                "tags": ["Demandes"],
+                "summary": "accepterDemande",
+                "requestBody": {},
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": { "application/json": {} }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -6,11 +6,14 @@ use App\Models\Formation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use OpenApi\Annotaions\OpenApi as OA;
 
 class DemandeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA \GET(
+     *  PATH="/liste/demande", 
+     * @OA \RESPONSE(response=200))
      */
     public function index()
     {
