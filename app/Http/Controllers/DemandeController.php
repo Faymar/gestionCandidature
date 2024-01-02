@@ -34,7 +34,7 @@ class DemandeController extends Controller
                 $candidats,
                 ['status' => 'accepte']
             );
-        return response()->json('la demande est acceptee avec sucess');
+        return response()->json(['message' => 'la demande est acceptee avec sucess']);
     }
     public function reufuseDemande($id_demande, Formation $formation)
     {
@@ -47,7 +47,7 @@ class DemandeController extends Controller
                 $candidats,
                 ['status' => 'refuse']
             );
-        return response()->json('la demande est acceptee avec sucess');
+        return response()->json(['message' => 'la demande est refusee avec sucess']);
     }
     /**
      * Store a newly created resource in storage.
@@ -55,8 +55,8 @@ class DemandeController extends Controller
     public function store(Formation $formation)
     {
         $candidat = Auth::user();
-        $formation->Candidat()->attach($candidat);
-        return response()->json('votre demande est enregistree avec sucess');
+        $formation->Candidat()->attach($candidat, ['status' => 'encours']);
+        return response()->json(['message' => 'votre demande est enregistree avec succes']);
     }
 
     /**

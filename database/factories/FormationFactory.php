@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Http\UploadedFile;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Formation>
@@ -17,7 +18,10 @@ class FormationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nomFormation' => fake()->name(),
+            'dateDebut' => fake()->date(),
+            'dateFin' => fake()->date(),
+            'fichier' => UploadedFile::fake()->create('document.pdf'),
         ];
     }
 }
